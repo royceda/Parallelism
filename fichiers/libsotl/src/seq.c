@@ -31,12 +31,18 @@ static void seq_update_vbo (sotl_device_t *dev)
 
     // Atom color depends on z coordinate
     {
-      float ratio = (set->pos.z[n] - domain->min_ext[2]) / (domain->max_ext[2] - domain->min_ext[2]);
+      
+      float ratio = atom_state[n]/SHOCK_PERIOD;
+      
+      //float ratio = (set->pos.z[n] - domain->min_ext[2]) / (domain->max_ext[2] - domain->min_ext[2]);
 
+      if(atom_state[n] != 0){
       vbo_color[n*3 + 0] = (1.0 - ratio) * atom_color[0].R + ratio * 1.0;
       vbo_color[n*3 + 1] = (1.0 - ratio) * atom_color[0].G + ratio * 0.0;
       vbo_color[n*3 + 2] = (1.0 - ratio) * atom_color[0].B + ratio * 0.0;
       atom_state[n]--;
+      }
+      
     }
   }
 }
