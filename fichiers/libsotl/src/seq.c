@@ -17,6 +17,7 @@ static int *atom_state = NULL;
 
 #define SHOCK_PERIOD  50
 
+
 // Update OpenGL Vertex Buffer Object
 //
 static void seq_update_vbo (sotl_device_t *dev)
@@ -31,16 +32,16 @@ static void seq_update_vbo (sotl_device_t *dev)
 
     // Atom color depends on z coordinate
     {
-      
-      float ratio = atom_state[n]/SHOCK_PERIOD;
-      
+            
       //float ratio = (set->pos.z[n] - domain->min_ext[2]) / (domain->max_ext[2] - domain->min_ext[2]);
 
+      
       if(atom_state[n] != 0){
-      vbo_color[n*3 + 0] = (1.0 - ratio) * atom_color[0].R + ratio * 1.0;
-      vbo_color[n*3 + 1] = (1.0 - ratio) * atom_color[0].G + ratio * 0.0;
-      vbo_color[n*3 + 2] = (1.0 - ratio) * atom_color[0].B + ratio * 0.0;
-      atom_state[n]--;
+	float ratio = (float)(atom_state[n])/(float)SHOCK_PERIOD;
+	vbo_color[n*3 + 0] = (1.0 - ratio) * atom_color[0].R + ratio * 1.0;
+	vbo_color[n*3 + 1] = (1.0 - ratio) * atom_color[0].G + ratio * 0.0;
+	vbo_color[n*3 + 2] = (1.0 - ratio) * atom_color[0].B + ratio * 0.0;
+	atom_state[n]--;
       }
       
     }
@@ -84,12 +85,18 @@ static void seq_bounce (sotl_device_t *dev)
   //TODO
   
   for (unsigned n = 0; n < set->natoms; n++) {
-    if(set->pos.x[n] <= domain->min_ext[0] || set->pos.x[n] >= domain->max_ext[0])
+    if(set->pos.x[n] <= domain->min_ext[0] || set->pos.x[n] >= domain->max_ext[0]){
       set->speed.dx[n] *= -1;
-    if(set->pos.y[n] <= domain->min_ext[1] || set->pos.y[n] >= domain->max_ext[1])
+      atom_state[n] = SHOCK_PERIOD;
+    }
+    if(set->pos.y[n] <= domain->min_ext[1] || set->pos.y[n] >= domain->max_ext[1]){
       set->speed.dy[n] *= -1;
-    if(set->pos.z[n] <= domain->min_ext[2] || set->pos.z[n] >= domain->max_ext[2])
+      atom_state[n] = SHOCK_PERIOD;
+    }
+    if(set->pos.z[n] <= domain->min_ext[2] || set->pos.z[n] >= domain->max_ext[2]){
       set->speed.dz[n] *= -1;
+      atom_state[n] = SHOCK_PERIOD;
+    }
   }
 }
 
