@@ -3,9 +3,9 @@
 #include <string.h>
 #include <sys/time.h>
 #ifdef __APPLE__
-#  include <OpenCL/opencl.h>
+#include <OpenCL/opencl.h>
 #else
-#  include <CL/opencl.h>
+#include <CL/opencl.h>
 #endif
 #include "util.h"
 
@@ -34,9 +34,10 @@ static void alloc_buffers_and_user_data(cl_context context)
   input_data = malloc(SIZE * sizeof(float));
   output_data = malloc(SIZE * sizeof(float));
 
-  for(int i = 0; i < SIZE; i++)
+  for(int i = 0; i < SIZE; i++){
     input_data[i] = (float)i;
-
+  }
+  
   // Allocate buffers inside device memory
   //
   input_buffer = clCreateBuffer(context,  CL_MEM_READ_WRITE,  sizeof(float) * SIZE, NULL, NULL);
@@ -84,7 +85,7 @@ static void retrieve_output(cl_command_queue queue)
   cl_int err;
 
   err = clEnqueueReadBuffer(queue, output_buffer, CL_TRUE, 0,
-			    sizeof(float) * SIZE, output_data, 0, NULL, NULL );  
+			    sizeof(float) * SIZE, output_data, 0, NULL, NULL );
   check(err, "Failed to read output array");
 }
 
