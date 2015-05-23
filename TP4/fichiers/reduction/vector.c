@@ -263,7 +263,8 @@ int main(int argc, char** argv)
 	{  
 	  int debut = 0;
 	  int fin = SIZE;
-	  
+
+
 	  err = 0;
 	  err  = clSetKernelArg(kernel, 0, sizeof(cl_mem), &input_buffer);
 	  check(err, "Failed to set kernel arguments 1");
