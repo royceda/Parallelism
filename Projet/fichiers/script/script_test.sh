@@ -3,23 +3,21 @@
 rm data.txt
 touch data.txt
 
-javac Parser.java
-
-# a voir
-touch data.txt
-bash script_test.sh "./bin/atoms -v --omp 0 -i 10 -n 1k"
+#bash script_test.sh "./bin/atoms -v --omp 0 -i 10 -n 1k"
 
 #Mettre en premier argument la commande d'exécution du programme
 #Rajouter OMP_NUM_THREADS
 
-for i in `seq 1 100`;
+for j in `seq 1 64` 
 do
-    `echo "$1"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> data.txt
-done   
+    for i in `seq 1 100`;
+    do
+	`echo "OMP_NUM_THREADS=$j $1"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    done   
+    java Parser `echo $j` >> result.data
+done
 
-java Parser >> result.data
-
-
+#donner un nom au graphe
 ./plot.gp
 
 
