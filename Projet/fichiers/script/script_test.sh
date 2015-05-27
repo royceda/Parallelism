@@ -20,3 +20,6 @@ done
 java Parser >> result.data
 
 
+./plot.gp
+
+
