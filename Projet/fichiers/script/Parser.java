@@ -43,6 +43,10 @@ class Parser{
 
 
     public static void main(String args[]) throws IOException{
-	System.out.println(args[0]+avgTime +" "+ avg);
+	averageRow(0);
+	if (args.length == 0)
+	    System.out.println(avgTime +" "+ avg);
+	if (args.length == 1)
+	    System.out.println(args[0]+" "+avgTime +" "+ avg);
     }
 }
