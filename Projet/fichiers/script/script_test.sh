@@ -3,6 +3,8 @@
 rm data.txt
 touch data.txt
 
+javac Parser.java
+
 # a voir
 touch data.txt
 bash script_test.sh "./bin/atoms -v --omp 0 -i 10 -n 1k"
@@ -15,5 +17,6 @@ do
     `echo "$1"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> data.txt
 done   
 
+java Parser >> result.data
 
 

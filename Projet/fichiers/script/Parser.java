@@ -16,6 +16,7 @@ class Parser{
     static double averageRow(int index) throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(name));
         int tmpTime = 0;
+	int tmp = 0;
 	try {
 
 	    for(int i = 0; i<10; i++){
@@ -28,8 +29,10 @@ class Parser{
 		//System.out.println(Integer.parseInt(tokens[1]));
 
 		tmpTime += Integer.parseInt(tokens[0]);
+		tmp += Integer.parseInt(tokens[1]);
 	    }
-	    avgTime = tmpTime/100.0;
+	    avgTime = tmpTime/10.0;
+	    avg = tmp /10.0;
 
         } finally {
             br.close();
@@ -40,6 +43,6 @@ class Parser{
 
     public static void main(String args[]) throws IOException{
 	averageRow(0);
-	System.out.println("Moyenne:"+ avgTime);
+	System.out.println(avgTime +" "+ avg);
     }
 }
