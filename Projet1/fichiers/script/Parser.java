@@ -29,6 +29,8 @@ class Parser{
 		//System.out.println(tokens[3]);
 		tmpTime += Double.valueOf(tokens[2]);
 		tmp += Double.valueOf(tokens[3]);
+		System.out.println("tmp: "+tmp);
+		System.out.println("tmp: "+tmpTime);
 	    }
 	    avgTime = tmpTime/100.0;
 	    avg = tmp /100.0;
