@@ -204,10 +204,9 @@ __kernel
 void gravity (__global calc_t * speed, calc_t gx, calc_t gy, calc_t gz,
 	      unsigned natoms, unsigned offset)
 {
-
-const int index = get_global_id(0);
-
   // TODO
+
+    // TODO
 
 /*  speed[index] -= gx;
   speed[offset + index] -= gy;
@@ -222,6 +221,7 @@ const int index = get_global_id(0);
    s.y -= g*p.y;
    store3coord(speed+index, s, offset);
  }
+  
 }
 
 
@@ -230,7 +230,7 @@ void lennard_jones (__global calc_t * pos,
 		       __global calc_t * speed,
 		       unsigned natoms, unsigned offset)
 {
-    unsigned index    = get_global_id (0);
+    unsigned index = get_global_id (0);
     unsigned local_id = get_local_id (0);
 
     coord_t mypos;
