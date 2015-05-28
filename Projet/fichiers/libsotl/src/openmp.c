@@ -72,7 +72,7 @@ static void omp_update_vbo (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
   sotl_domain_t *domain = &dev->domain;
-#pragma omp parallel for
+#pragma omp parallel for //schedule(runtime)
   for (unsigned n = 0; n < set->natoms; n++) {
     vbo_vertex[n*3 + 0] = set->pos.x[n];
     vbo_vertex[n*3 + 1] = set->pos.y[n];
@@ -97,7 +97,7 @@ static void omp_update_vbo (sotl_device_t *dev)
 static void omp_move (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
-  #pragma omp parallel for
+  #pragma omp parallel for //schedule(runtime)
   for (unsigned n = 0; n < set->natoms; n++) {
     set->pos.x[n] += set->speed.dx[n];
     set->pos.y[n] += set->speed.dy[n];
@@ -111,7 +111,7 @@ static void omp_gravity (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
   const calc_t g = 0.005;
-#pragma omp parallel for
+#pragma omp parallel for //schedule(runtime)
   for (unsigned n = 0; n < set->natoms; n++) {
     set->speed.dy[n] -= g;
   }
@@ -121,7 +121,7 @@ static void omp_bounce (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
   sotl_domain_t *domain = &dev->domain;
-#pragma omp parallel for
+#pragma omp parallel for //schedule(runtime)
   for (unsigned n = 0; n < set->natoms; n++) {
     if (set->pos.x[n] < domain->min_ext[0] || set->pos.x[n] > domain->max_ext[0]){
       set->speed.dx[n] = -set->speed.dx[n];
@@ -172,7 +172,7 @@ static calc_t lennard_jones (calc_t r2)
 static void omp_force (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
-#pragma omp parallel for     
+#pragma omp parallel for  //schedule(runtime)
   for (unsigned current = 0; current < set->natoms; current++) {
     calc_t force[3] = { 0.0, 0.0, 0.0 };
     for (unsigned other = current-1; other < set->natoms; other--)
