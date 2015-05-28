@@ -41,7 +41,7 @@ vec[index] += sum;
 
 
 // la II
- tmp[get_local_id(0)] = vec[get_global_id(0)];
+tmp[get_local_id(0)] = vec[get_global_id(0)];
  barrier(CLK_LOCAL_MEM_FENCE);
 
  if(get_local_id(0) == 0){
@@ -51,5 +51,5 @@ vec[index] += sum;
       
    vec[fin+get_group_id(0)] = group_sum;
  }
-
+ 
 }
