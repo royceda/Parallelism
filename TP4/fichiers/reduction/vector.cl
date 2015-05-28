@@ -5,7 +5,7 @@ __kernel void reduction(__global float *vec,
 
 __local float tmp[TILE];
 
- /*
+/*
 const int index = fin + get_group_id(0);
 const int index_th = get_local_id(get_group_id(0));
 

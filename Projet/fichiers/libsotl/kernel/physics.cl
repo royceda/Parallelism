@@ -220,7 +220,7 @@ void lennard_jones (__global calc_t * pos,
 		       __global calc_t * speed,
 		       unsigned natoms, unsigned offset)
 {
-    unsigned index = get_global_id (0);
+    unsigned index    = get_global_id (0);
     unsigned local_id = get_local_id (0);
 
     coord_t mypos;
