@@ -479,6 +479,7 @@ static void scan_values(sotl_device_t *dev, int nvalues, int offset_in, int offs
     }
 }
 
+
 void scan(sotl_device_t *dev, const unsigned begin, const unsigned end)
 {
     int offset_in = begin;

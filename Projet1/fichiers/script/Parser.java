@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-
-
 class Parser{
     public static double avgTime;
     public static double avg;
