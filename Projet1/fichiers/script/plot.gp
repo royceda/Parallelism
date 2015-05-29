@@ -1,7 +1,7 @@
 #!/usr/bin/gnuplot
 
 set term pdf #enhanced monochrome dashed
-set output "num_thread.pdf"
+set output "./Bi\ Xeon/num_thread.pdf"
 
 set key right bottom
 
