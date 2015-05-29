@@ -4,7 +4,7 @@ rm test.data
 touch test.data
 echo "#NUM_THREAD time/i M/i/s" > result.data
 
-#bash script_test.sh "../bin/atoms -v --omp 0 -i 10 -n 1k"
+#bash script_test.sh "../bin/atoms -v --omp 1 -i 10 -n 1k"
 
 #Mettre en premier argument la commande d'exécution du programme
 #Rajouter OMP_NUM_THREADS

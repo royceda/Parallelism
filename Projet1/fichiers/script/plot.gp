@@ -1,12 +1,11 @@
 #!/usr/bin/gnuplot
 
 set term pdf #enhanced monochrome dashed
-set output "result.pdf"
+set output "num_thread.pdf"
 
 set key right bottom
 
 set xlabel "N"
-set ylabel "Performance (#items/s)"
+set ylabel "Time (#micro sec)"
 
-plot "res.txt" with linespoints title "Un truk qu'on veut",\
-     "res2.txt" with linespoints title "OK"
+plot "res_num_thread.data" with linespoints title "num thread"
