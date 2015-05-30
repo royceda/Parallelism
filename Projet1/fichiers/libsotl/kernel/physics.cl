@@ -213,14 +213,16 @@ void gravity (__global calc_t * speed, calc_t gx, calc_t gy, calc_t gz,
   speed[offset + offset + index] -= gz;
 */
 
- coord_t p, s;
- if(index < natoms){
-   s = load3coord(speed + index, offset);
-   p = load3coord(pos + index, offset);
-
-   s.y -= g*p.y;
-   store3coord(speed+index, s, offset);
- }
+  unsigned index = get_global_id(0);
+  
+  coord_t p, s;
+  if(index < natoms){
+    s = load3coord(speed + index, offset);
+    p = load3coord(pos + index, offset);
+    
+    s.y -= gy*p.y;
+    store3coord(speed+index, s, offset);
+  }
   
 }
 
@@ -537,7 +539,7 @@ void box_force (__global calc_t *pos_buffer,
   }
 }
 
-
+/*
 __kernel
 void reduction(__global float *vec,
 				int debut,
@@ -558,3 +560,4 @@ __local float tmp[TILE];
  }
  
 }
+*/

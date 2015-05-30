@@ -17,7 +17,10 @@ echo "#NUM_TEST time/i M/i/s" > res_schedule.data
 echo "export OMP_SCHEDULE=\"static\""
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data  
+   
+    `echo "OMP_SCHEDULE=\"static\" ../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 1 >> res_schedule.data
 done
 java Parser 1 >> res_schedule.data
 
@@ -27,7 +30,9 @@ touch test.data
 echo "export OMP_SCHEDULE=\"static,2\""
 for i in `seq 1 100`;
 do    
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    `echo "OMP_SCHEDULE=\"static,2\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 2 >> res_schedule.data
 done
 java Parser 2 >> res_schedule.data
 
@@ -37,7 +42,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"static,4\""   
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"static,4\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 3 >> res_schedule.data
 done
 java Parser 3 >> res_schedule.data
 
@@ -47,7 +55,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"static,8\""   
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"static,8\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 4 >> res_schedule.data
 done
 java Parser 4 >> res_schedule.data
 
@@ -58,7 +69,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"static,16\""
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"static,16\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 5 >> res_schedule.data
 done
 java Parser 5 >> res_schedule.data
 
@@ -68,7 +82,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"dynamic\""
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"dynamic\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 6 >> res_schedule.data
 done
 java Parser 6 >> res_schedule.data
 
@@ -78,7 +95,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"dynamic,2\""
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data  
+   
+    `echo "OMP_SCHEDULE=\"dynamic,2\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 7 >> res_schedule.data
 done
 java Parser 7 >> res_schedule.data
 
@@ -88,7 +108,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"dynamic,4\""
 for i in `seq 1 100`;
 do
-    `echo " ../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"dynamic,4\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 8 >> res_schedule.data
 done
 java Parser 8 >> res_schedule.data
 
@@ -98,7 +121,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"dynamic,8\""
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"dynamic,8\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+    
+    java Parser 9 >> res_schedule.data
 done
 java Parser 9 >> res_schedule.data
 
@@ -108,7 +134,10 @@ touch test.data
 echo "export OMP_SCHEDULE=\"dynamic,16\""
 for i in `seq 1 100`;
 do
-    `echo "../bin/atoms -v --omp 0 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    `echo "OMP_SCHEDULE=\"guided\" ../bin/atoms -v --omp 1 -i 10 -n 1k"` 2>&1 | grep -oE "([[:space:]]+([0-9]*.[0-9])+){3}" >> test.data
+   
+    java Parser 10 >> res_schedule.data
 done
 java Parser 10 >> res_schedule.data
 

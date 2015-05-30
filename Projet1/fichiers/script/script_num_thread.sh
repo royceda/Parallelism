@@ -9,6 +9,10 @@
 #                                         - openmp sans tri z
 #                                         - openmp avec tri z
 
+
+
+#pr le 3 commenter atom_set_sort dans one_step_move et le premier omp_force et decommanter le second
+
 # Test standard avec n = 1000
 # $1 est passe en parametre, c'est "../bin/atoms -v --omp O -i 10 n 1k
 rm test.data
