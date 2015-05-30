@@ -218,7 +218,7 @@ void gravity (__global calc_t * speed, calc_t gx, calc_t gy, calc_t gz,
   coord_t p, s;
   if(index < natoms){
     s = load3coord(speed + index, offset);
-    p = load3coord(pos + index, offset);
+    //p = load3coord(pos + index, offset);
     
     s.y -= gy*p.y;
     store3coord(speed+index, s, offset);
