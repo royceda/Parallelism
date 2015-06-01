@@ -168,7 +168,7 @@ static calc_t lennard_jones (calc_t r2)
 
   return 24 * LENNARD_EPSILON * rr2 * (2.0f * r6 * r6 - r6);
 }
-/*
+
 static void omp_force (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
@@ -182,7 +182,7 @@ static void omp_force (sotl_device_t *dev)
 	calc_t sq_dist = squared_distance (set, current, other);
 	if (sq_dist < LENNARD_SQUARED_CUTOFF) {
 	  calc_t intensity = lennard_jones (sq_dist);
-	  calc_t * /*restrict*/ /* posx = set->pos.x ;
+	  calc_t * /*restrict*/ posx = set->pos.x ;
 	  force[0] += intensity * (posx[current] - posx[other]);
 	  force[1] += intensity * (posx[set->offset + current] -
 				   posx[set->offset + other]);
@@ -190,7 +190,6 @@ static void omp_force (sotl_device_t *dev)
 				   posx[set->offset * 2 + other]);
 	}
       }
-    //#pragma omp simd
     for (unsigned other = current + 1; other < set->natoms; other++)
       {
 	if (z_distance(set, current, other) > LENNARD_SQUARED_CUTOFF)
@@ -198,7 +197,7 @@ static void omp_force (sotl_device_t *dev)
 	calc_t sq_dist = squared_distance (set, current, other);
 	if (sq_dist < LENNARD_SQUARED_CUTOFF) {
 	  calc_t intensity = lennard_jones (sq_dist);
-	  calc_t * /*restrict*/ /*posx = set->pos.x ;
+	  calc_t * /*restrict*/ posx = set->pos.x ;
 	  force[0] += intensity * (posx[current] - posx[other]);
 	  force[1] += intensity * (posx[set->offset + current] -
 				   posx[set->offset + other]);
@@ -212,10 +211,9 @@ static void omp_force (sotl_device_t *dev)
     atom_state[current] = omp_get_thread_num();
   }
 }
-				*/
 
 /* omp_force sans tri selon z, commenter aussi atom_set_sort dans omp_one_step_move */
-
+/*
 static void omp_force (sotl_device_t *dev)
 {
   sotl_atom_set_t *set = &dev->atom_set;
@@ -244,6 +242,7 @@ static void omp_force (sotl_device_t *dev)
     set->speed.dx[set->offset * 2 + current] += force[2];
   }
 }
+*/
 
 // Main simulation function
 //
